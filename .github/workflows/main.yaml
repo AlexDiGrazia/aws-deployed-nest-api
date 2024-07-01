@@ -1,14 +1,14 @@
  name: Deploy
-on: 
+
+ on:  
   push: 
     branches: [ "main" ]
   
 jobs:
   build-and-push-to-ecr:
-   
-  
     name: Build Docker Image
     runs-on: ubuntu-latest  
+    
     steps:  
         - name: Checkout
           uses: actions/checkout@v2    
