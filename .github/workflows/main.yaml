@@ -53,8 +53,11 @@ jobs:
           ]' --query "Command.CommandId" --output text)
 
           echo "$command_id"
-      # - name: Wait for command to finish
-      #   run: |
-      #     aws ssm wait command-executed \
-      #     --command-id ${COMMAND_ID} \
-      #     --instance-id ${YOUR_INSTANCE_ID}
+
+          aws ssm wait command-executed \
+          --command-id $command_id \
+          --instance-id i-0d3eafea510bc4681
+
+          commandOutput=$(aws ssm list-commands --command-id $command_id)
+
+          echo "$commandOutput"
