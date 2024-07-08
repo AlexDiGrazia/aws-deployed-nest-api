@@ -26,6 +26,8 @@ jobs:
           ECR_REPOSITORY: ${{secrets.AWS_ECR_REPO}}
           IMAGE_TAG: latest
         run: |
+          echo ${{ steps.login-aws-ecr.outputs.registry }}
+          echo ${{secrets.AWS_ECR_REPO}}
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
   deploy:
@@ -54,8 +56,6 @@ jobs:
             "docker pull ${{ steps.login-aws-ecr.outputs.registry }}/${{secrets.AWS_ECR_REPO}}:latest",
             "docker run --rm -d -p 3000:3000 --name ${{ vars.CONTAINER_NAME }} ${{ steps.login-aws-ecr.outputs.registry }}/${{secrets.AWS_ECR_REPO}}:latest"
           ]' --query "Command.CommandId" --output text)
-
-          echo ${{ steps.login-aws-ecr.outputs.registry }}/${{secrets.AWS_ECR_REPO}}
 
           aws ssm wait command-executed \
           --command-id $command_id \
