@@ -68,9 +68,9 @@ jobs:
         run: |
           status=$(aws ssm list-commands --command-id ${{ env.command_id }} --query "Commands[0].StatusDetails" --output text)
 
-          echo "$status"
+          echo $status
 
-          if [ "$status" == "Success" ]; then
+          if [ $status == "Success" ]; then
             echo "Command executed Successfully"
           else 
             echo "Command failed"
