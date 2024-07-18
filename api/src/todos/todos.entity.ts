@@ -14,11 +14,14 @@ export class TodoEntity {
   title: string;
 
   @Column()
+  title: string;
+
+  @Column()
   description: string;
 
   @Column()
   done: boolean;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ nullable: true })
   createdAt: Date;
 }
