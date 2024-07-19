@@ -5,13 +5,13 @@ FROM --platform=linux/amd64 node:18
 WORKDIR /app
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
+COPY api/package*.json ./
 
 # Install app dependencies
 RUN npm install
 
 # Bundle app source
-COPY . .
+COPY api ./
 
 # Creates a "dist" folder with the production build
 RUN npm run build
