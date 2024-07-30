@@ -102,7 +102,7 @@ jobs:
           echo $status
 
           if [ $status == "Success" ]; then
-            echo "Command executed Successfully - API is up and running"
+            echo "Command executed Successfully. API is up and running"
           else 
             echo "Command failed"
             exit 1
@@ -154,7 +154,7 @@ deploy-frontend:
         echo $status
 
         if [ $status == "Success" ]; then
-          echo "Command executed Successfully - Frontend up and running!"
+          echo "Command executed Successfully. Frontend up and running!"
         else 
           echo "Command failed"
           exit 1
