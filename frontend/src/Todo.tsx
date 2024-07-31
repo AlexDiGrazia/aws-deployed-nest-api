@@ -37,6 +37,12 @@ const Todo = ({ todo, updateTodos }: Props) => {
       });
   };
 
+  const deleteTodo = () => {
+    axios.delete(`http://${host}/api/todos/${todo.id}`).then((response) => {
+      updateTodos(response.data);
+    });
+  };
+
   return (
     <div
       key={todo.id}
@@ -105,6 +111,7 @@ const Todo = ({ todo, updateTodos }: Props) => {
       >
         {complete ? "Mark Incomplete" : "Mark Complete"}
       </button>
+      <button onClick={deleteTodo}>Delete</button>
     </div>
   );
 };
